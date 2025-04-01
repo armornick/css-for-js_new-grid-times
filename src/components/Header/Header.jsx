@@ -11,15 +11,6 @@ import Button from "../Button";
 const Header = () => {
 	return (
 		<header>
-			<MobileHeader></MobileHeader>
-			<DesktopHeader></DesktopHeader>
-		</header>
-	);
-};
-
-const MobileHeader = () => {
-	return (
-		<MobileOnly>
 			<SuperHeader>
 				<Row>
 					<ActionGroup>
@@ -38,54 +29,32 @@ const MobileHeader = () => {
 				</Row>
 			</SuperHeader>
 			<MainHeader>
-				<Logo />
-			</MainHeader>
-		</MobileOnly>
-	);
-};
-
-const DesktopHeader = () => {
-	return (
-		<DesktopOnly>
-			<Row>
-				<ActionGroup>
+				<DesktopActionGroup>
 					<button>
 						<Search size={24} />
 					</button>
 					<button>
 						<Menu size={24} />
 					</button>
-				</ActionGroup>
-				<MainHeader>
-					<Logo />
-				</MainHeader>
+				</DesktopActionGroup>
+				<Logo />
 				<CenteredBlock>
 					<Button>Subscribe</Button>
 					<TextLink href="/">Already a subscriber?</TextLink>
 				</CenteredBlock>
-			</Row>
-		</DesktopOnly>
+			</MainHeader>
+		</header>
 	);
 };
-
-const MobileOnly = styled.div`
-	@media ${QUERIES.desktopAndUp} {
-		display: none;
-	}
-`;
-
-const DesktopOnly = styled.div`
-	display: none;
-
-	@media ${QUERIES.desktopAndUp} {
-		display: block;
-	}
-`;
 
 const SuperHeader = styled.div`
 	padding: 16px 0;
 	background: var(--color-gray-900);
 	color: white;
+
+	@media ${QUERIES.laptopAndUp} {
+		display: none;
+	}
 `;
 
 const Row = styled(MaxWidthWrapper)`
@@ -106,20 +75,47 @@ const ActionGroup = styled.div`
 	}
 `;
 
+const DesktopActionGroup = styled(ActionGroup)`
+	display: none;
+
+	@media ${QUERIES.laptopAndUp} {
+		display: flex;
+	}
+`;
+
 const MainHeader = styled(MaxWidthWrapper)`
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	margin-top: 32px;
 	margin-bottom: 48px;
+
+	@media ${QUERIES.tabletAndUp} {
+		margin-top: 48px;
+		margin-bottom: 72px;
+	}
+
+	@media ${QUERIES.laptopAndUp} {
+		margin-top: 16px;
+		margin-bottom: 72px;
+		display: grid;
+		grid-template-columns: 1fr auto 1fr;
+	}
 `;
 
 const CenteredBlock = styled.div`
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	gap: 8px;
+	display: none;
+
+	@media ${QUERIES.laptopAndUp} {
+		justify-self: end;
+		align-self: end;
+
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		gap: 8px;
+	}
 `;
 
 const TextLink = styled.a`
@@ -127,6 +123,7 @@ const TextLink = styled.a`
 	font-family: var(--font-family-serif);
 	font-weight: var(--font-weight-normal);
 	font-style: italic;
+	font-size: 0.872rem;
 	text-decoration: underline;
 `;
 
