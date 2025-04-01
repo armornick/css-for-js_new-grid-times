@@ -27,11 +27,11 @@ const MainStoryGrid = () => {
 
 			<OpinionSection>
 				<SectionTitle>Opinion</SectionTitle>
-				<StoryList>
+				<OpinionStoryList>
 					{OPINION_STORIES.map((story, index) => (
 						<OpinionStory key={story.id} {...story} />
 					))}
-				</StoryList>
+				</OpinionStoryList>
 			</OpinionSection>
 
 			<AdvertisementSection>
@@ -79,8 +79,14 @@ const StoryList = styled.div`
 		border-top: 1px solid var(--color-gray-300);
 		padding-top: 16px;
 	}
+`;
 
+const OpinionStoryList = styled(StoryList)`
 	@media ${QUERIES.tabletOnly} {
+		display: grid;
+		grid-auto-flow: column;
+		gap: 32px;
+
 		& > * + * {
 			border-top: none;
 		}
