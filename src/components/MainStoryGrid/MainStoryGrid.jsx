@@ -61,7 +61,8 @@ const Wrapper = styled.div`
 	}
 
 	@media ${QUERIES.laptopAndUp} {
-		grid-template-columns: 2fr 2fr 1fr;
+		gap: 0;
+		grid-template-columns: 5fr 4fr 3fr;
 		grid-template-areas:
 			"main-story secondary-stories opinion-stories"
 			"main-story advertisement advertisement";
